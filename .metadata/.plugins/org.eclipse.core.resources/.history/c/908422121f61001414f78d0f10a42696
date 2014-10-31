@@ -16,9 +16,9 @@ public class Chunk {
 		{
 			for(int j=0;j<16;j++)
 			{
+				int worldSpaceY=(int) (cy+y);
 				float x = (cx+(i/16))/noiseScale;
 				float y = (cy+(j/16))/noiseScale;
-				int worldSpaceY=(int) (cy+y);
 				float density = noise.getArbitaryValue(x,y);
 				Tile tile = Tile.GRASS;
 				if (worldSpaceY>1)
