@@ -1,0 +1,66 @@
+package dev.bottle.mining;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JFrame;
+
+public class Game extends Canvas implements Runnable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	volatile boolean running = true;
+	
+	final int size = 16;
+	
+	final int scale = 40;
+	
+	BufferedImage image = new BufferedImage(size,(size/4)*3,BufferedImage.TYPE_INT_RGB);
+	
+	public static void main(String[] args)
+	{
+		Thread t = new Thread(new Game());
+		t.start();
+	}
+	
+	public Game()
+	{
+		JFrame frame = new JFrame("Mining Game");
+		frame.add(this);
+		frame.pack();
+		frame.setSize(size*scale,(size/4)*3*scale);
+		frame.validate();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
+
+	@Override
+	public void run() {
+		
+		while(running)
+		{
+			this.repaint();
+		}
+		
+	}
+	
+	public void paint(Graphics2D g)
+	{
+		g.fillRect(0, 0, size*scale, (size/4)*3*scale);
+	}
+	
+	@Override
+	public void update(Graphics g)
+	{
+		paint(image.createGraphics());
+		g.drawImage(image,0,0,size*scale,(size/4)*3*scale,null);
+	}
+	
+}

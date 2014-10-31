@@ -1,0 +1,15 @@
+package dev.bottle.mining;
+
+import dev.bottle.noise.Noise;
+
+public class Chunk {
+	
+	Tile[][] tiles = new Tile[16][16];
+	Noise noise;
+	
+	public Chunk(Noise noise)
+	{
+		this.noise=noise;
+	}
+
+}
