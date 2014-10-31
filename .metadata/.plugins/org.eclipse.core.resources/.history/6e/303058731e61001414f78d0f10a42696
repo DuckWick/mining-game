@@ -16,35 +16,11 @@ public class Chunk {
 		{
 			for(int j=0;j<16;j++)
 			{
-				int worldSpaceY=(int) (cy+y);
 				float x = (cx+(i/16))/noiseScale;
 				float y = (cy+(j/16))/noiseScale;
 				float density = noise.getArbitaryValue(x,y);
 				Tile tile = Tile.GRASS;
-				if (worldSpaceY>1)
-				{
-					tile=Tile.DIRT;
-				}
-				if (worldSpaceY>100)
-				{
-					tile=Tile.STONE;
-				}
-				if (worldSpaceY>300)
-				{
-					tile=Tile.GRANITE;
-				}
-				if (worldSpaceY>600)
-				{
-					tile=Tile.OBSIDIAN;
-				}
-				if(worldSpaceY>1200)
-				{
-					tile=Tile.VOID;
-				}
-				if(density>0.5 && worldSpaceY<=1200)
-				{
-					tile=null;
-				}
+				int worldSpaceY=cy+y;
 			}
 		}
 	}
